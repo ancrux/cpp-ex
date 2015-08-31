@@ -1,0 +1,107 @@
+
+<Windows>
+Build DLL:
+1. 檔案 -> 新增 -> 專案
+2. 選 C++ -> Win32專案
+3. Win32 應用程式精靈 -> 應用程式專案
+	- 應用程式類別: 選 DLL
+	- 其它選項: 空專案 (v)
+	
+4. 專案 -> 屬性:
+	- (Release/Debug) 組態屬性 -> 一般 -> 輸出目錄: "..\aos_lib" // 原來是 "$(SolutionDir)$(ConfigurationName)"
+	- (Release/Debug) 組態屬性 -> 一般 -> 中繼目錄: "..\aos_lib\$(ConfigurationName)" // 原來是 "$(ConfigurationName)"
+	- (Debug) 組態屬性 -> 連結器 -> 一般 -> 輸出檔: "$(OutDir)\$(ProjectName)d.dll" // 原來是 "$(OutDir)\$(ProjectName).dll"
+
+5. 記得在 *.h 加上
+#pragma warning(disable: 4251) // for STL template class
+#include "aos/Config.h"
+
+6. 專案 -> 屬性:
+	- 組態屬性 -> C/C++ -> 前置處理器: 在 AOS_EXPORTS 後面加上
+_CRT_SECURE_NO_WARNINGS
+_CRT_NONSTDC_NO_WARNINGS
+AOS_HAS_DLL
+AOS_BUILD_DLL
+
+7. 我的電腦 -> 內容 -> 進階 -> 環境變數 Path 加上 "%AOS_ROOT%\aos_lib;"
+	(如果正在執行 Visual Studio，需要重新開啟)
+
+[PCRE library]	
+8. 專案 -> 屬性:
+	- 組態屬性 -> C/C++ -> 一般 -> 偵測 64 位元可攜性問題: 否
+
+Link AOS Library:
+1. 工具 -> 選項 -> 專案和方案 -> VC++ 目錄
+	- 顯示目錄切換至: 程式庫檔
+	- 在 $(SSL_ROOT)\out32dll, $(ACE_ROOT)\lib, $(AIO_ROOT)\lib, $(ICU_ROOT)\lib, 後面加上
+	$(AOS_ROOT)\aos_lib
+	
+2. 專案 -> 屬性:
+	- 組態屬性 -> 連結器 -> 輸入 -> 其它相依性: 加上 "aos.lib" or "aosd.lib"
+	
+<Linux>
+BUILD SO:
+1. 在 Makefile 中
+ifeq ($(ARCH),linux)
+# Linux with gcc 2.7.2.x
+CXX           = g++
+CXXFLAGS      = -O -Wall -fPIC $(IPATH) // 確認選項 -fPIC
+LD            = g++
+LDFLAGS       = -O $(SOPATH) $(LPATH)
+SOFLAGS       = -shared -Wl,-soname,libAOS.so // 確認選項 -shared 和 新增 "-Wl,-soname,libAOS.so"
+endif
+
+2. 在 Makefile 中
+$(LD) $(SOFLAGS) $(LDFLAGS) $(notdir $(OBJFILES)) $(LIBS) \
+    -o ../aos_lib/libAOS.so // 新增 "$(SOFLAGS)" 和 "../aos_lib/libAOS.so"
+
+LINK AOS Library:
+1. Makefile 中變數加上:
+LIBS = -lAOS
+LPATH = -L$(AOS_ROOT)/aos_lib
+2. 把 libAOS.so 的檔案放在 SOPATH -Wl,-rpath 所設定的路徑上
+
+<Build with SQLite on Windows>
+參見 http://www.sqlite.org/cvstrac/wiki?p=HowToCompile
+
+1. 將 sqlite source 放在 $(AOS_ROOT)/sqlite/ 並加入 AOS project
+sqlite3.h
+sqlite3ext.h
+sqlite3.c
+sqlite.def // 從 win32 dll (sqlitedll-3_x_xx.zip) 的 zip extract 出來
+
+2. 專案 -> 屬性:
+	- 組態屬性 -> C/C++ -> 前置處理器: 在最後面加上
+SQLITE_ENABLE_COLUMN_METADATA
+
+3. 專案 -> 屬性:
+	- 組態屬性 -> 連結器 -> 輸入 -> 模組定義檔: "../sqlite/sqlite3.def"
+	
+4. 編譯中可能會有某些在 sqlite3.def 中定義的 function 找不到
+可以自行從 def 檔移除後，再編譯一次!
+
+<Build with SQLite on Linux>
+1. 先下載 sqlite-amalgamation-3.x.xx.tar.gz 解壓到 $sqlite3_build_dir
+
+2. 執行 console: 
+cd $sqlite3_build_dir
+./configure
+make
+
+3. 在 $sqlite3_build_dir 下面:
+cd .libs
+cp sqlite3.o $AOS_ROOT/aos
+
+4. 把 sqlite3.h, sqlite3ext.h, sqlite3.c 放到 $AOS_ROOT/sqlite
+
+5. 在 linux project 中把 sqlite3.h, sqlite3ext.h, sqlite3.c 加入
+
+6. 修改 Makefile 在 OBJFILES 下多加一行
+../sqlite/sqlite3.$(ObjSuf)
+這其實還是會在 ../sqlite 下產生一個 sqlite3.o 但是會 link $AOS_ROOT/aos/sqlite3.o
+
+7. 重新 compile AOS project
+
+<Development Notes>
+- 開發測試中的 *.h, *.cpp 儘量在 aos_test 中使用 static link 方式加入 project
+不要 link AOS/AOSd.lib (不容易 Debug)

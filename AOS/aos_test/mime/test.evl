@@ -1,0 +1,97 @@
+X-GW-Reason: 13101
+X-Visual-Signature:
+  EHpwChB3y8wQdujjEHVQPBB0XJ4QdBoEEHNjchByPFkQb30kEG1lwg==
+  EGyLmhBqmqMQaLl+EGik/xBgpQUQXtyzEFtL7xBZBSQQWB36EFToHw==
+  EFRasxBRKx8QUAxHEE6MeBBNbGQQSys7EERSkBBDY6wQQQRsED/MGg==
+X-Content-Feature:
+  reputation/sender.ip 0.50
+  ica/max.line-size 73
+  icc/iph.spam.pattern 81
+  icc/iph.ham.pattern 75
+  icc/iph.spam 134
+  icc/iph.ham 98
+  icc/pph.ham.ip 1
+  icc/pph.ham 1
+  icc/phr.contack 1
+  icc/key.transation 1.30
+  icc/key.stock 2
+  icc/eml.msg 1
+  icc/key.chat 1
+  xml/pat.advertisement 1
+X-Spam-Checker-Version: SpamAssassin 3.1.8 (2007-02-13) on mtkmgw01.mediatek.com
+X-Spam-Status: score=0.6 required=6.0
+X-Spam-Report:
+  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay lines
+  0.2 MISSING_HEADERS        Missing To: header
+  0.3 MAILTO_TO_SPAM_ADDR    URI: Includes a link to a likely spammer email
+  0.1 TO_CC_NONE             No To: or Cc: header
+Received: from mhqrelay.mediatek.com [(210.61.82.183)] by mtkmgw01.mediatek.com
+	(envelope-from <alicelaw18@gmail.com>)
+	(mtkmgw01.mediatek.com ESMTP)
+	with ESMTP id 1702143605; Mon, 01 Mar 2010 17:25:50 +0800
+X-Received: from mail-vw0-f53.google.com [(209.85.212.53)] by mhqrelay.mediatek.com
+	(envelope-from <alicelaw18@gmail.com>)
+	(mhqrelay.mediatek.com ESMTP)
+	with ESMTP id 573827888; Mon, 01 Mar 2010 17:16:50 +0800
+Received: by vws16 with SMTP id 16so269884vws.12
+        for <andrew.chang@mediatek.com>; Mon, 01 Mar 2010 01:25:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:mime-version:received:date:message-id:subject
+         :from:content-type;
+        bh=eLehnk1lgFO+dVFtQQX+Yfo1GsY5oCMmsRWX+dO5LvI=;
+        b=JiEQ602hDY9PUPPb8d3xg9IrGjCz2xEPocs95zQAHhEZ3qj7XcQubqABJjaa9jyGLw
+         4FFdvoS4aSglqmZtP+agcES+PZ3PAFef7Z/dwlxL1EaM43zHJR6DUvm/T68JyUVrTnEz
+         DdnYn6sucBXbgAVXYjtWwKJWxmoB+XvsGCunc=
+DomainKey-Signature: a=rsa-sha1; c=nofws;
+        d=gmail.com; s=gamma;
+        h=mime-version:date:message-id:subject:from:content-type;
+        b=f621pEd+ghy6dLe3CQNY99AJ5QFkt32zUJ7qjUSgqvTafeCUTLw6BBf4CmtyEwzyAZ
+         J0FWS097FwMPNOnsvH815MqtU/u1L5JABwi8zzNOCjYyKYLoZ1DoXNkIlKx2P/fH5OpS
+         gjnzpCLyb8ALAEfDmMaVIBqgNK+1b3cSibuDg=
+MIME-Version: 1.0
+Received: by 10.220.122.193 with SMTP id m1mt4589918vcr.34.1267435543751; Mon, 
+	01 Mar 2010 01:25:43 -0800 (PST)
+Date: Mon, 1 Mar 2010 10:25:43 +0100
+Message-ID: <7907477a1003010125p3bb32403ga5a566a7bb2a25e7@mail.gmail.com>
+Subject: Please Pardon me.I need Your Help.
+From: Alice Law <alicelaw18@gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+
+ Hello,
+
+ How are you?  Kindly pardon me for not informing you about my urgent
+ trip to Edinburg for three days Seminar. It was something urgent and i
+ didn't even inform anyone about this traveling. I need your help
+ urgently because I got my wallet misplaced on my way to the hotel I
+ lodged in after the Seminar yesterday which was actually the last day.
+ My money,phone, cards,diary, including my return ticket and other
+ vital documents are all in the wallet. I'm stranded here as i  can not
+ even make public calls, i only have access to the internet and that is
+ why i'm sending you this email so that you could help me out with
+ $2000 to pay for my bills and to sort myself out. But I will
+ appreciate any amount you could afford. I will pay you back upon my
+ arrival. I don't even mind paying with interest.
+
+ If you would help me with any amount, i will advise you go straight to
+ any western union money transfer outlet or any nearby bank and ask of
+ western union money transfer. You only need my name and the address
+ below to make the transfer at the western union office.  After the
+ transfer at the western union, you can just send me the money transfer
+ control number[MTCN]. Which is the ten digits number [MTCN], I will be
+ able to get the money here immediately.
+
+ Name :    Alice Yue-er Luo
+ Address: 80 High Street,The Royal Mile,EH1 1TH, Edinburgh,United Kingdom
+
+ Looking forward to hearing from you soon
+ Regards.
+
+-- 
+Dr. Alice Yue-er Luo
+Executive-In Residence
+HKUST,
+alicelaw18@gmail.com
+alicelaw@ust.hk
+
+852-69097298

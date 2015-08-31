@@ -1,0 +1,226 @@
+
+ 
+下面是 sys_stat 的用法
+CelloDirectory 的部份就先略過，3.9.7 不確定有包進 CelloDirectory
+
+-------------------------------------------------------------------------------------
+
+sys_stat (system status service)
+Usage:
+/usr/local/mozart/svc sys_stat <command>
+
+
+所有的值都可以視為 string
+() 括號內是欄位的意義
+下面的指令可能會回傳多筆資料，其餘的都是一筆:
+cpu_info
+fs
+ps
+net_if
+
+
+
+
+範例:
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat cpu_info
++2 OK
+processor_id(處理器的id) model(處理器的型號) physical_id(實體處理器的index) core_id(處理核心的index) core_count(處理核心的總數)
+0 Intel(R) Pentium(R) D CPU 3.00GHz 0 0 2
+1 Intel(R) Pentium(R) D CPU 3.00GHz 0 1 2
+
+
+CelloDirectory 位置:
+無
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat cpu
++0 OK
+user(User space 的 CPU 使用率) kernel(Kernel space 的 CPU 使用率) iowait(IO Wait 的 CPU 使用率) idle(閒置 CPU 使用率)
+0.353133 0.225247 0.000000 99.421623
+
+
+CelloDirectory 位置:
+dn:/tmp/monitoring//cpu
+oc:cpu_usage
+CelloDirectory 欄位:
+cpu_user
+cpu_kernel
+cpu_iowait
+cpu_idle
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat mem
++0 OK
+total(記憶體總位元) used(使用的) free(未使用的)
+1058004992 789352448 268652544
+
+
+CelloDirectory 位置:
+dn:/tmp/monitoring//mem
+oc:space_usage
+CelloDirectory 欄位:
+space_total
+space_used
+space_free
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat swap
++0 OK
+total(swap 空間的總位元) used(使用的) free(未使用的)
+0 0 0
+
+
+CelloDirectory 位置:
+dn:/tmp/monitoring//swap
+oc:space_usage
+CelloDirectory 欄位:
+space_total
+space_used
+space_free
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat fs
++2 OK
+device(儲存裝置名稱) type(檔案系統類型) mount(掛載點) total(總位元) used(使用的) free(未使用的)
+/dev/sda3 ext3 / 74532085760 32465645568 38280347648
+/dev/sda1 ext3 /boot 103512064 11620352 86547456
+
+
+CelloDirectory 位置:
+dn:/tmp/monitoring//fs
+oc:fs_info
+oc:space_usage
+CelloDirectory 欄位:
+dev_name
+fs_type
+mnt_point
+space_total
+space_used
+space_free
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat os
++1 OK
+os_name(作業系統名稱) os_release(Release 版本) os_version(作業系統版本) platform(平台) host_name(主機名稱) uptime(已執行時間)
+Linux "2.6.9-42.ELsmp" "#1 SMP Sat Aug 12 09:39:11 CDT 2006" "i686" "mailgw.cellopoint.com" 11830001
+
+
+CelloDirectory 位置:
+無
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat net_if
++5 OK
+if_name(網路界面名稱) if_speed(最大傳輸速率) if_duple雙工模式)
+lo 0 UNKNOWN
+eth0 1000 FULL
+eth1 65535 UNKNOWN
+sit0 0 UNKNOWN
+br0 0 UNKNOWN
+
+
+CelloDirectory 位置:
+無
+------------------------------------------------------------
+/usr/local/mozart/svc/svc sys_stat ps
++88 OK
+pid(Process ID) cpu(CPU 使用率) mem(佔用記憶體空間) thr(執行緒總數) state(執行狀態) name(名稱) title(標題，可能是 image 的位置)
+1 0.000980 577536 1 SLEEPING init init [3]                   
+2 0.000087 12288 1 SLEEPING migration/0 
+3 0.000305 12288 1 SLEEPING ksoftirqd/0 
+4 0.000088 12288 1 SLEEPING migration/1 
+5 0.000007 12288 1 SLEEPING ksoftirqd/1 
+6 0.000013 12288 1 SLEEPING events/0 
+7 0.000000 12288 1 SLEEPING events/1 
+8 0.000027 12288 1 SLEEPING khelper 
+9 0.000000 12288 1 SLEEPING kacpid 
+34 0.000000 12288 1 SLEEPING kblockd/0 
+35 0.000000 12288 1 SLEEPING kblockd/1 
+53 0.000000 12288 1 SLEEPING pdflush 
+36 0.000000 12288 1 SLEEPING khubd 
+56 0.000000 12288 1 SLEEPING aio/0 
+57 0.000000 12288 1 SLEEPING aio/1 
+55 0.000011 12288 1 SLEEPING kswapd0 
+201 0.000000 12288 1 SLEEPING kseriod 
+308 0.000002 12288 1 SLEEPING ata/0 
+309 0.000001 12288 1 SLEEPING ata/1 
+313 0.000000 12288 1 SLEEPING scsi_eh_0 
+314 0.000000 12288 1 SLEEPING scsi_eh_1 
+330 0.006392 12288 1 SLEEPING kjournald 
+1481 0.000000 483328 1 SLEEPING udevd udevd 
+1744 0.000000 12288 1 SLEEPING kauditd 
+1810 0.000000 12288 1 SLEEPING kmirrord 
+1828 0.000000 12288 1 SLEEPING kjournald 
+2586 0.004049 573440 1 SLEEPING syslogd syslogd -m 0 
+2590 0.000000 405504 1 SLEEPING klogd klogd -x 
+2600 0.000002 319488 1 SLEEPING irqbalance irqbalance 
+2619 0.000000 573440 1 SLEEPING portmap portmap 
+2638 0.000000 749568 1 SLEEPING rpc.statd rpc.statd 
+2666 0.000000 360448 1 SLEEPING rpc.idmapd rpc.idmapd 
+2732 0.000005 528384 1 SLEEPING smartd /usr/sbin/smartd 
+2741 0.000000 462848 1 SLEEPING acpid /usr/sbin/acpid 
+2811 0.000019 1175552 1 SLEEPING sshd /usr/sbin/sshd 
+2824 0.000000 786432 1 SLEEPING xinetd xinetd -stayalive -pidfile /var/run/xinetd.pid 
+2830 0.000000 1273856 1 SLEEPING mysqld_safe /bin/sh /usr/local/mysql/bin/mysqld_safe 
+2850 0.000192 14422016 9 SLEEPING mysqld /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --user=nobody --pid-file=/usr/local/mysql/data/mailgw.cellopoint.com.pid --skip-external-locking 
+2858 0.021064 326373376 1 SLEEPING clamd /usr/local/clamav/sbin/clamd 
+2885 0.000006 7864320 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+2886 0.000099 7020544 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+2887 0.000094 7823360 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+2888 0.000093 8347648 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+2889 0.000091 6787072 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+2890 0.000091 6422528 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+2913 0.000001 1933312 1 SLEEPING sendmail sendmail: accepting connections
+2921 0.000001 1671168 1 SLEEPING sendmail sendmail: Queue runner@01:00:00 for /var/spool/clientmqueue
+2931 0.000000 25935872 1 SLEEPING sophie /usr/bin/sophie -D 
+2941 0.000026 39784448 1 SLEEPING spamd /usr/bin/spamd -d -x -s null -u nobody -m 20 -r /var/run/spamd.pid
+2950 0.000000 372736 1 SLEEPING gpm gpm -m /dev/input/mice -t imps2 
+2959 0.000080 962560 1 SLEEPING crond crond 
+2979 0.000000 1085440 1 SLEEPING xfs xfs -droppriv -daemon 
+2996 0.000000 442368 1 SLEEPING atd /usr/sbin/atd 
+3018 0.000000 847872 1 SLEEPING dbus-daemon-1 dbus-daemon-1 --system 
+3027 0.000003 13901824 9 SLEEPING java /usr/java/jre1.6.0_03/bin/java -classpath /usr/local/mozart/java/lib/bcmail-jdk16-136.jar:/usr/local/mozart/java/lib/bcprov-jdk16-136.jar:/usr/local/mozart/java/lib/checkstyle-all-4.2.jar:/usr/local/mozart/java/lib/FontBox-0.1.0.jar:/usr/local/mozart/java/lib/javamail-crypto_060622.jar:/usr/local/mozart/java/lib/javamail-crypto-bouncycastle-smime_060622.jar:/usr/local/mozart/java/lib/junit.jar:/usr/local/mozart/java/lib/jxl.jar:/usr/local/mozart/java/lib/mail.jar:/usr/local/mozart/java/lib/mysql-connector-java-5.0.6-bin.jar:/usr/local/mozart/java/lib/PDFBox-0.7.3.jar:/usr/local/mozart/java/lib/poi-3.0.1-FINAL-20070705.jar:/usr/local/mozart/java/lib/poi-contrib-3.0.1-FINAL-20070705.jar:/usr/local/mozart/java/lib/poi-scratchpad-3.0.1-FINAL-20070705.jar:. JJS 20000 
+3035 0.000059 38834176 1 SLEEPING spamd spamd child
+3036 0.000071 38789120 1 SLEEPING spamd spamd child
+3037 0.000003 4968448 1 SLEEPING hald hald 
+3046 0.000000 282624 1 SLEEPING rootd /usr/local/mozart/rootd/rootd 
+3050 0.000000 466944 1 SLEEPING rootdd /usr/local/mozart/rootd/rootdd 
+3151 0.000000 16351232 1 SLEEPING aveserver /usr/local/kav4linux/bin/aveserver -c /usr/local/kav4linux/etc/kavconfig.conf 
+3498 0.000000 434176 1 SLEEPING mingetty /sbin/mingetty tty1 
+3499 0.000000 434176 1 SLEEPING mingetty /sbin/mingetty tty2 
+3500 0.000000 430080 1 SLEEPING mingetty /sbin/mingetty tty3 
+3501 0.000000 434176 1 SLEEPING mingetty /sbin/mingetty tty4 
+3502 0.000000 434176 1 SLEEPING mingetty /sbin/mingetty tty5 
+3503 0.000000 434176 1 SLEEPING mingetty /sbin/mingetty tty6 
+3504 0.000000 479232 1 SLEEPING agetty /sbin/agetty -L ttyS0 115200 vt100 
+18729 0.000094 8515584 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+1109 0.000078 8286208 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+10154 0.000066 6422528 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+10160 0.000070 7950336 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+10161 0.000069 6750208 1 SLEEPING httpd /etc/httpd/bin/httpd -DSSL 
+21211 0.000000 2060288 1 SLEEPING cupsd cupsd 
+10713 0.001663 2371584 2 RUNNING sys_stat ../sys_stat/sys_stat --as sys_stat 
+10726 0.000000 2240512 2 SLEEPING svm ./svm --as svm 
+32702 0.001597 12288 1 SLEEPING pdflush 
+28965 0.003043 2342912 1 SLEEPING sshd sshd: root@pts/0  
+28972 0.000000 1216512 1 SLEEPING sftp-server /usr/libexec/openssh/sftp-server 
+28994 0.002182 1490944 1 SLEEPING bash -bash 
+633 0.000000 495616 1 SLEEPING icaupdate /bin/sh /usr/local/mozart/smtpd/icaupdate 
+634 0.000000 503808 1 SLEEPING sleep sleep 267 
+792 0.000000 2293760 1 SLEEPING sshd sshd: root@notty  
+794 0.010700 1224704 1 SLEEPING sftp-server /usr/libexec/openssh/sftp-server 
+879 0.000000 540672 1 SLEEPING reporter /usr/local/mozart/reporter2/reporter 
+882 0.012700 6225920 1 SLEEPING php /usr/bin/php backup_schedule.php 
+893 0.000000 1200128 2 SLEEPING updated ./updated 
+1012 -0.000000 1941504 1 SLEEPING svc ./svc sys_stat ps
+
+
+CelloDirectory 位置:
+無
+------------------------------------------------------------
+
+
+sys_stat 的補充
+------------------------------------------------------------
+忘了補充一個東西
+回傳的結果換行是用 '\n'
+同一行欄位之間分隔字元是用 '\t'
+
+回傳的第一行第一個字元一定是 + 或 - 開頭。
++ 代表成功，- 代表失敗
+

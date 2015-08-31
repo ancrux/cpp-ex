@@ -1,0 +1,165 @@
+
+[IMAP4]
+RFC:
+IMAP4 rev1 http://www.faqs.org/rfcs/rfc3501.html
+IMAP4 Implementation Recommendations http://www.faqs.org/rfcs/rfc2683.html
+Message Disposition Notification (MDN) profile http://www.faqs.org/rfcs/rfc3503.html
+
+Mailbox 的命名:
+採用修改過的 UTF-7 編碼
+參考 5.1 -> 5.1.3
+5.1.3 有詳細解說
+
+Command 執行: 參考 5.5
+Server 可以(MAY)同時執行多個 Command 不一定要先回應
+但是回應的順序一定要跟 Command 的順序一致
+Client 可以從 tag 區分回應
+
+
+Command:
+
+Any State:
+"CAPABILITY":列出 Server 支援的指令或能力
+
+Example:   
+C: abcd CAPABILITY
+S: * CAPABILITY IMAP4rev1 STARTTLS AUTH=GSSAPI LOGINDISABLED
+S: abcd OK CAPABILITY completed
+C: efgh STARTTLS
+S: efgh OK STARTLS completed
+<TLS negotiation, further commands are under [TLS] layer>
+C: ijkl CAPABILITY
+S: * CAPABILITY IMAP4rev1 AUTH=GSSAPI AUTH=PLAIN
+S: ijkl OK CAPABILITY completed
+
+"NOOP":無動作
+
+Example:    
+C: a002 NOOP
+S: a002 OK NOOP completed
+. . .
+C: a047 NOOP
+S: * 22 EXPUNGE
+S: * 23 EXISTS
+S: * 3 RECENT
+S: * 14 FETCH (FLAGS (\Seen \Deleted))
+S: a047 OK NOOP completed
+
+"LOGOUT":登出
+
+Example:    
+C: A023 LOGOUT
+S: * BYE IMAP4rev1 Server logging out
+S: A023 OK LOGOUT completed
+(Server and client then close the connection)
+
+
+Not Authenticated State:
+"STARTTLS":使用安全連線 SSL/TLS
+"AUTHENTICATE":
+"LOGIN":
+
+Authenticated State:
+"SELECT":
+"EXAMINE":
+都是選擇一個 mailbox，輸出也差不多
+
+
+"CREATE":
+tag001 CREATE mbox
+
+"DELETE":
+"RENAME":
+建立/刪除/重新命名 mailbox
+
+"SUBSCRIBE":
+"UNSUBSCRIBE":
+"LSUB":
+訂閱/取消訂閱/列出訂閱 active/subscribed mailbox
+
+
+
+"LIST":
+LIST reference mailbox
+用 ""
+
+"STATUS":
+"APPEND":
+
+Selected State:
+"CHECK":
+跟 NOOP 有點像
+
+
+"CLOSE":
+清空 flag 是 delete 的信，並從 Selected State -> Authenticated State
+Selected State 再次送出 SELECT, EXAMINE, LOGOUT 也代表會先 CLOSE 目前所選的 mailbox
+
+"EXPUNGE":
+清空 flag 是 delete 的信
+
+"SEARCH":
+"FETCH":
+"STORE":
+"COPY":
+"UID":
+
+Experimental/Expansion:
+"X<atom>":
+
+Response:
+
+Status Responses:
+OK
+NO
+BAD
+PREAUTH
+BYE
+
+Server and Mailbox Status:
+CAPABILITY
+LIST
+LSUB
+STATUS
+SEARCH
+FLAGS
+
+Mailbox Size:
+EXISTS
+RECENT
+
+Message Status:
+EXPUNGE
+FETCH
+
+Command Continuation Request:
+Server 回應 "+" 開頭而不是 tag 開頭
+代表可以接受 client 更多 command
+
+C: A001 LOGIN {11}
+S: + Ready for additional command text
+C: FRED FOOBAR {7}
+S: + Ready for additional command text
+C: fat man
+S: A001 OK LOGIN completed
+C: A044 BLURDYBLOOP {102856}
+S: A044 BAD No such command as "BLURDYBLOOP"
+
+Server 的回應永遠只有三種開頭的可能:
+1. 以 tag 開頭 (OK, NO, BAD) ... CRLF // 通常是回應的最後一行 (含有狀態 OK, NO, BAD)
+2. 以 + 開頭 ... CRLF // Client 可以再傳送資料給 Server
+3. 以 * 開頭 ... CRLF // 表示 untagged response e.g Command 尚未完成
+
+回應的狀態也只有三種
+OK (indicating success)
+NO (indicating failure)
+BAD (indicating a protocol error such as unrecognized command or command syntax error).
+
+回應有三種型式:
+1. status responses
+2. server data
+3. command continuation request
+
+{digit}CRLF 結尾表示接下來有 digit octet(bytes) 的 data 要傳送
+以 data + CRLF 結束
+

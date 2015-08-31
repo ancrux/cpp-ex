@@ -1,0 +1,19 @@
+RFC：2445 http://rfc.net/rfc2445.html (英文) 
+
+標題：網際網路行事曆和排程核心物件規格 (iCalendar) 
+
+Exchange 2007 特定：由 Exchange 2007 實作。
+ 
+
+RFC：2446 http://rfc.net/rfc2446.html (英文) 
+
+標題：iCalendar 傳輸獨立交互操作性通訊協定 (iTIP) 排程事件、忙碌時間、待辦事項和日誌項目
+
+Exchange 2007 特定：由 Exchange 2007 實作 (局部支援)。
+ 
+
+RFC：2447 http://rfc.net/rfc2447.html (英文) 
+
+標題：iCalendar 郵件型交互操作性通訊協定 (iMIP)
+
+Exchange 2007 特定：由 Exchange 2007 實作 (局部支援)。

@@ -1,0 +1,62 @@
+
+Mbox Format:
+http://www.qmail.org/man/man5/mbox.html
+
+
+FileSystem Structure:
+./mbox/addr.db
+./mbox/12345678-1234-1234-1234-1234567890AB/mbox.db (meta.db list.db)
+./mail/mail.db (data.db)
+./mail/mail_id.eml
+
+indexed by email address
+addr_to_mbox:{
+	MAILBOX_ID
+}
+
+indexed by 收件日期, mailbox
+mail_meta:{
+MAIL_ID // 或是利用 ( MBOX_ID + ) MAIL_PATH + MAIL_ID 當做 id, e.g. /INBOX/882032FA
+MAIL_PATH
+狀態 (flags 記錄 deleted, seen, unread 等狀態)
+標籤 (/開頭，代表 folder, \t 代表分隔)
+寄件者
+主旨
+摘要
+附件
+收件日期
+大小
+
+PRIMARY KEY(MAIL_ID, MAIL_PATH)
+}
+
+
+indexed by MAIL_ID
+mail_data:{
+RAW_DATA
+ref_count
+大小
+}
+
+MAILBOX_ID 用 UUID generator 產生 UUID String (slow ID generator is ok)
+MAIL_ID 用 time_t + global thread-safe counter (need fast ID generator)
+
+API:
+
+// Mailbox
+mailbox_id create_mailbox();
+destroy_mailbox(mailbox_id);
+
+// Mail
+mail_id insert_mail(list<mailbox_id>, eml_file);
+remove_mail(list<mailbox_id>, list<mail_id>);
+
+// Mail Meta
+list<mail> get_mail_meta(mailbox_id);
+
+// Mail Data
+eml_string get_mail_data(mail_id);
+
+// Mail Tags
+
+// Mail Status

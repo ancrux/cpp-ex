@@ -1,0 +1,29 @@
+
+<Windows>
+
+- VC++->目錄 include path 加入:
+	$(AOS_ROOT)/asio
+	
+- C/C++->前置處理器定義:
+	_CRT_SECURE_NO_WARNINGS
+	_CRT_NONSTDC_NO_WARNINGS
+	BOOST_DATE_TIME_NO_LIB
+	BOOST_REGEX_NO_LIB
+	_WIN32_WINNT=0x0501
+	ASIO_DISABLE_BUFFER_DEBUGGING
+	
+	
+P.S. 前置處理器「不要」定義 ASIO_DISABLE_THREADS // v1.4.5 在 Windows 會有問題!!!
+P.S. 可用 BOOST_ALL_NO_LIB 取代 BOOST_DATE_TIME_NO_LIB BOOST_REGEX_NO_LIB ?
+	
+- C/C++->偵測 64 位元可攜性: 否
+
+- (if SSL enabled) 連結器->輸入->其它相依性:
+	libeay32.lib
+	ssleay32.lib
+
+
+<Code>
+#include <boost/bind.hpp>
+#include "asio.hpp"
+#include "asio/ssl.hpp" // if SSL enabled

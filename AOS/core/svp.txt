@@ -1,0 +1,47 @@
+﻿
+在 svc.ini 中
+建立你自己的 service entry，每行代表一個 service
+<service_name>=./svp -c "path to your program" -v "your version string" -b 0 -s 9
+
+-v 代表 version 可省略，如果省略 version 指令會回傳 "" 空字串
+-b 代表 build_timestamp 可省略， default 是 -b 0, 數字代表要使用 -c 參數中指令的第幾個參數做為 build_timestamp
+或者一個字串代表 build_timestamp, e.g "Feb 14 2006 15:23:44" (相當 strptime "%b %d %Y %H:%M:%S" 的格式)
+-s 代表 當執行 stop 時，要送給 service/daemon 的 signal number. e.g. -s 9 就是送出 SIGKILL (kill -9)
+比較常用來做為結束程式的 signal 有 SIGINT(2), SIGQUIT(3), SIGKILL(9), SIGTERM(15) 視個人偏好使用
+
+svp 的 -s 選項可以支援執行另一隻終止程式
+範例: svp -c "path_to_cmd" -s "path_to_stop_cmd"
+
+注意:終止的程式一定要 return 0 才會被認為有執行成功，
+否則會被 svp 視為終止失敗，而且您的程式會馬上會被 kill 掉...
+
+如果有問題的話，要跟我說一下，因為 service 沒辦法 stop 是蠻嚴重的一件事:b
+
+儘量以 ./svc <your service> stop <seconds> 來結束 service
+這樣可以確保在等待 <seconds> 秒後，會強制終止 service
+
+---------------------------------------------
+SVP (Service Proxy) 用法: 
+
+
+-c 執行命令路徑 (必要)
+
+
+-s 停止程式所要發送的 signal 或 命令 (預設是 -s 9 SIG_KILL)
+
+
+-p 執行程式的 pid 或 pid 檔案
+
+
+-v 程式的版本
+
+
+-b 程式的 build_timestamp 使用執行命令第 n 個參數來擷取
+
+
+範例:
+./svp -c "../php5/php ../test/test.php" -v "0.1b" -b 1 -s 9
+---------------------------------------------
+
+
+

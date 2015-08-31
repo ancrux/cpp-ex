@@ -1,0 +1,26 @@
+Mail Server 不一定要設 MX .
+
+一般流程:
+1. MTA(郵件轉送程式)看到一封信的收件人是 user@domainname
+2. 查詢 domainname 的 MX 記錄.
+3. 如果有指定 MX 為 mailserver.domainname. , 查出 mailserver.domainname. 的 IP , 寄送到該 IP .
+4. 如果沒有指定 MX , 就查詢 A 或 CNAME 記錄, 直到查到 domainname. 的 IP , 寄送到該 IP .
+
+如果在 DNS 設錯 MX , 反而會產生 mail loop . 比如:
+mailserver.domain. IN MX 10 mailserver.domain.
+
+
+而需要設 MX 的用途, 在於同一個 Zone 的信, 要分給不同 mail server 處理,
+比如作為備援, 或者要把郵件的寄送跟其他功能(如 httpd)分開
+@ IN MX 10 mailserver1
+@ IN MX 20 mailserver2
+@ IN A xxx.xx.xxx.31
+mailserver1 IN A xxx.xx.xxx.21
+mailserver2 IN A xxx.xx.xxx.22
+
+工具:
+nslookup
+>set type=mx
+>gmail.com
+
+MX preference 值愈小，代表愈優先

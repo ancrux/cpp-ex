@@ -1,0 +1,91 @@
+
+[SMTP]
+
+RFC:
+"SMTP" http://www.faqs.org/rfcs/rfc2821.html
+"SMTP" http://www.faqs.org/rfcs/rfc2822.html
+
+[ESMTP]
+http://en.wikipedia.org/wiki/Extended_SMTP
+
+RFC:
+"AUTH" http://www.faqs.org/rfcs/rfc4954.html
+支援登入認証
+LOGIN
+PLAIN
+
+"8BITMIME" http://www.faqs.org/rfcs/rfc1652.html
+
+"SIZE" http://www.faqs.org/rfcs/rfc1870.html
+可以宣告(EHLO)可接受郵件的最大 size，以及在 MAIL FROM:<addr> SIZE=(size) 告知估計的郵件 size
+還是要檢查<CR><LF>.<CR><LF>來判斷是否 DATA 傳送完畢
+
+"ENHANCEDSTATUSCODES" http://www.faqs.org/rfcs/rfc2034.html
+
+"CHUNKING" (BDAT) http://www.faqs.org/rfcs/rfc3030.html
+可以接受 SMTP client 下 BDAT (chunk-size) (LAST) 的指令代替 DATA
+
+"STARTTLS" http://www.faqs.org/rfcs/rfc3207.html
+支援安全傳輸
+
+"DSN" http://www.faqs.org/rfcs/rfc3461.html
+可以支援傳送狀態回條
+MAIL FROM 多加兩個 options: RET=(HDRS), ENVID=(original-envelope-id)
+RCPT TO 多加兩個 options: NOTIFY=(SUCCESS, FAILURE, NEVER), ORCPT=(email-addr)
+
+"PIPELINING" http://www.faqs.org/rfcs/rfc2920.html
+可以接受 SMTP client 下連續的 commands，再照順序回應。
+In particular, the commands RSET, MAIL FROM,
+SEND FROM, SOML FROM, SAML FROM, and RCPT TO can all appear anywhere
+in a pipelined command group.  The EHLO, DATA, VRFY, EXPN, TURN,
+QUIT, and NOOP commands can only appear as the last command in a
+group since their success or failure produces a change of state which
+the client SMTP must accommodate.
+P.S. 5.2.4 SEND, SOML, and SAML Commands: RFC-821 Section 3.4
+
+"ETRN"/"TURN" http://www.faqs.org/rfcs/rfc1985.html
+
+
+Command:
+
+- CRLF 結尾，
+格式是 Command + " " + CRLF 或
+Command + " " + Parameters + CRLF
+
+多行回應，最後一行沒有 "-"
+250-xxx CRLF
+250-xxx CRLF
+250-xxx CRLF
+250 xxx CRLF
+
+
+"EHLO"/"HELO":
+
+"MAIL FROM":
+寄件人 email
+
+"RCPT TO":
+收件人 email
+
+"DATA":
+郵件內容
+
+- 以 "CRLF.CRLF" 結尾
+
+"RSET":
+取消現在的 transaction, 並清除已存在的 MAIL FROM, RCPT TO, DATA 資訊
+
+"VRFY":
+驗証 user/email/mailbox 是否存在
+
+"EXPN":
+展開 mailing list  (很少 Server 實作)
+
+"HELP":
+說明 (很少 Server 實作)
+
+"NOOP":
+無動作
+
+"QUIT":
+離開

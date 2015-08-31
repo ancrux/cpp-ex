@@ -1,0 +1,228 @@
+
+<compile on Win32>
+
+prepare:
+
+記得把新的
+config.h
+config_win32.h
+config_linux.h
+// 可以先利用 linux 環境， ./configure 產生 libstatgrab 的 config.h
+// 再 rename 成 config_linux.h 並加入 config.h 的 include 列表中
+放到 Project 裡
+
+Project 要記得 
+Project 屬性 => C/C++ => 前置處理器 => 前置處理器定義 增加一項
+HAVE_CONFIG_H
+
+
+common:
+
+---statgrab.h---
+#define STATGRAB_H
+
+#ifdef HAVE_CONFIG_H //@
+#include "config.h" //@
+#endif //@
+
+#ifdef __cplusplus
+
+...
+
+#ifdef SG_ENABLE_DEPRECATED
+#include "statgrab_deprecated.h" //! changed from <statgrab_deprecated.h>
+#endif
+
+---statgrab.h---
+
+---error.c---
+// no changes
+---error.c---
+
+---tools.h---
+// no changes
+---tools.h---
+
+---tools.c---
+#include <stdlib.h>
+//@
+#ifdef WIN32 //@
+//@
+#else //@
+#include <unistd.h>
+#endif //@
+//@
+#include <sys/types.h>
+---tools.c---
+
+---win32.h---
+// no changes
+---win32.h---
+
+---win32.c---
+PdhAddCounter => PdhAddCounterA * 1
+PdhEnumObjectItems => PdhEnumObjectItemsA * 2
+snprintf => _snprintf * 2
+---win32.c---
+
+// vector is required by process_stat, user_list
+
+---vector.h---
+// no changes
+---vector.h---
+
+---vector.c---
+h->init_fn((void *) (vector + i * h->item_size)); => h->init_fn((void *) ((char *) vector + i * h->item_size));
+h->destroy_fn((void *) (vector + i * h->item_size)); => h->destroy_fn((void *) ((char *) vector + i * h->item_size));
+---vector.c---
+
+cpu_usage: (Pdh.lib)
+
+---cpu_stats.c---
+// no changes
+---cpu_stats.c---
+
+vm_stats:
+
+---memory_stats.c---
+// no changes
+---memory_stats.c---
+
+---swap_stats.c---
+// no changes
+---swap_stats.c---
+
+os_info:
+
+---os_info.c---
+GetComputerName =>GetComputerNameA
+snprintf => _snprintf * 4
+---os_info.c---
+
+load_stats: (Not supported on Win32)
+
+---load_stats.c---
+// no changes
+---load_stats.c---
+
+process_stats: (Psapi.lib)
+
+---process_stats.c---
+// no changes
+---process_stats.c---
+
+disk_traffic:
+
+---disk_stats.c---
+GetLogicalDriveStrings => GetLogicalDriveStringsA * 1
+GetDriveType => GetDriveTypeA * 1
+GetVolumeInformation => GetVolumeInformationA * 1
+GetDiskFreeSpaceEx => GetDiskFreeSpaceExA * 1
+
+#ifdef WIN32
+	char lp_buf[MAX_PATH];
+	char volume_name_buf[BUFSIZE];
+	char filesys_name_buf[BUFSIZE];
+	char drive[4] = " :\\";
+	char *p;
+	int drive_type; //@
+	lp_buf[0]='\0';
+#endif
+
+...
+
+int drive_type = GetDriveType(drive); => drive_type = GetDriveTypeA(drive);
+---disk_stats.c---
+
+network_iface_stats: (Iphlpapi.lib)
+network_traffic: (Iphlpapi.lib)
+
+---network_stats.c---
+snprintf => _snprintf * 2
+---network_stats.c---
+
+statgrab deprecated:
+
+---statgrab_deprecated.h---
+// DO NOT INCLUDE THIS IN THE PROJECT AT THE BEGINNING, ADD IT LASTLY
+// no changes
+---statgrab_deprecated.h---
+
+---statgrab_deprecated.c---
+// DO NOT INCLUDE THIS IN THE PROJECT AT THE BEGINNING, ADD IT LASTLY
+// no changes
+---statgrab_deprecated.c---
+
+all examples:
+
+---all_examples.c---
+1.
+#ifdef WIN32 //@
+	delay = delay * 1000; //@
+#endif //@
+
+	/* Initialise statgrab */
+	sg_init();
+	
+...
+
+#ifdef WIN32 //@
+		::Sleep(delay); //@
+#else //@
+		sleep(delay);
+#endif //@
+
+2.
+remove getopt() code fragment
+---all_examples.c---
+
+<link on Win32>
+Pdh.lib
+Psapi.lib
+Iphlpapi.lib
+
+<compile on linux>
+
+
+linux 的 Makefile 要記得改一下:
+.SILENT:
+
+ARCH          = linux
+
+CXX           = 
+ObjSuf        = o
+SrcSuf        = cpp
+ExeSuf        =
+DllSuf        = so
+OutPutOpt     = -o 
+#@
+CSuf = c
+#@
+
+...
+
+ifeq ($(ARCH),linux)
+# Linux with gcc 2.7.2.x
+CXX           = g++
+CXXFLAGS      = -O -Wall -fPIC $(IPATH)
+LD            = g++
+LDFLAGS       = -O $(SOPATH) $(LPATH)
+SOFLAGS       = -shared
+#@
+GCC = gcc
+GCCFLAGS = -g -O2 -DHAVE_CONFIG_H
+GCCFLAGS += $(DEBUG_OPTIONS)
+#@
+endif
+
+...
+
+.$(SrcSuf).$(ObjSuf):
+	@echo "Compiling $<"
+	$(CXX) $(CXXFLAGS) -c $<
+
+#@
+.$(CSuf).$(ObjSuf):
+	@echo "C Compiling $<"
+	$(GCC) $(GCCFLAGS) -c $<
+#@

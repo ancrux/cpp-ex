@@ -1,0 +1,9 @@
+
+Website:
+http://cbl.abuseat.org/rsync-use.html
+
+Linux:
+rsync rsync://rsync.cbl.abuseat.org/cbl/list.txt cbl.txt
+
+Win32:
+C:\Program Files\cwRsync\bin>rsync rsync://rsync.cbl.abuseat.org/cbl/list.txt cbl.txt

@@ -1,0 +1,4 @@
+cron:
+- description: crawling sbr
+  url: /crawl
+  schedule: every 24 hours

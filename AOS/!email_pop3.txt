@@ -1,0 +1,192 @@
+
+[POP3]
+http://www.networksorcery.com/enp/protocol/pop.htm
+RFC:
+RFC 1939 POP3 protocol Updated by RFC 2449 
+RFC 2449 POP3 Extension Mechanism 
+RFC 2595 Using TLS with IMAP, POP3 and ACAP
+RFC 5034, 1734 for AUTH & SASL
+
+- server 先 greeting
+
+Command:
+- command 不分大小寫
+- command 後面接 keyword 或 argument 用 single space 分隔
+- keyword 3-4 char
+- argument up to 40 char
+- CRLF 結尾
+
+Response:
+- 可能多行 用 "CRLF.CRLF" 5 char 結尾
+- +OK 或 -ERR (都大寫) 為回應狀態
+- 含結尾至多 512 bytes
+- 回應開頭是 . 但是後面不是 CRLF，要把 . strip 掉
+- 如果開頭是 . 緊接 CRLF 表示回應結束，strip 最後 ".CRLF" 3 char
+
+State:
+
+AUTHORIZATION
+
+Greeting:
++OK POP3 server ready
+
+認証成功(USER, PASS, APOP) 進入 TRANSACTION state
+
+Command:
+離開
+"QUIT"
++OK dewey POP3 server signing off
+
+使用者名稱
+"USER"
+可能回應:
++OK name is a valid mailbox
+-ERR never heard of mailbox name
+
+
+使用者密碼
+"PASS"
+可能回應:
++OK maildrop locked and ready
+-ERR please specify username first with the USER command
+-ERR invalid password
+-ERR unable to lock maildrop
+
+(比較少 POP server 支援?)
+"APOP"
+APOP name digest (name: username, digest: MD5 digest of
+可能回應:
++OK maildrop locked and ready
+-ERR permission denied
+
+APOP 成功，進入 TRANSACTION state
+
+進入安全連線 (POP3 EXT)
+"STLS"
+
+STLS
++OK Begin TLS negotiation
+<TLS negotiation, further commands are under TLS layer>
+...
+
+STLS
+-ERR Command not permitted when TLS active
+
+列出所有 Server 支援的 capability command
+"CAPA"
+
+CAPA
++OK Capability list follows
+TOP
+USER
+SASL CRAM-MD5 KERBEROS_V4
+RESP-CODES
+LOGIN-DELAY 900
+PIPELINING
+EXPIRE 60
+UIDL
+IMPLEMENTATION Shlemazle-Plotz-v302
+.
+
+
+
+TRANSACTION
+
+信件編號從 1,2,3,...,n (10 進位)
+
+Command:
+狀態
+"STAT"
+
+STAT
++OK nn mm (nn: # of mails, mm: # of bytes of all mails)
+
+列表
+"LIST"
+
+LIST [n] (n: msg id, and n is optional)
+LIST
++OK 2 messages (320 octets)
+1 120
+2 200
+.
+
+LIST 2
+2 200
+
+取信
+"RETR"
+
+RETR [n] (n: msg id)
++OK 120 octets
+<the POP3 server sends the entire message here>
+.
+
+刪信
+"DELE"
+
+DELE [n] (n: msg id)
++OK message 1 deleted
+
+無動作
+"NOOP"
+
+NOOP
++OK
+
+重置，將原本要刪除的信件的回復
+"RSET"
+
+RSET
++OK maildrop has 2 messages (320 octets)
++OK 1 message(s) undeleted
+
+離開
+"QUIT"
+
+QUIT
++OK dewey POP3 server signing off
+-ERR some deleted messages not removed
+
+信件 n 最前 m 行
+"TOP"
+
+TOP n m
+TOP 2 10
++OK
+<the POP3 server sends the headers of the message, a blank line, and the first 10 lines of the body of the message>
+.
+
+TOP 100 10
+-ERR no such message
+
+郵件 ID 列表 (Unique ID Listing)
+"UIDL"
+
+UIDL [n]
+UIDL
++OK
+1 whqtswO00WBw418f9t5JxYwZ
+2 QhdPYR:00WBw1Ph7x7
+.
+
+UIDL 2
++OK 2 QhdPYR:00WBw1Ph7x7
+
+UIDL 3
+-ERR no such message, only 2 messages in maildrop
+
+列出所有 Server 支援的 capability command
+"CAPA"
+
+UPDATE (QUIT command)
+
+- timeout 不會進入 UPDATE
+
+
+POP3 Server 的其它考量:
+
+- Imposing a per-user maildrop storage quota or the like.
+- Enforce a site policy regarding mail retention on the server. (e.g 7 days)
+
+

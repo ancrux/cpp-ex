@@ -1,0 +1,651 @@
+http://www.lesnikowski.com/mail/rfc.aspx
+http://www.lemis.com/email/email-rfc.html
+http://www.tac.nyc.ny.us/mail/rfc-index.html
+http://www.livinginternet.com/e/e.htm
+http://www.piclist.com/techref/method/encode.htm
+http://www.networksorcery.com/enp/protocol/pop.htm
+
+http://technet.microsoft.com/zh-tw/library/cc540463.aspx
+
+並非所有文件參照都包含範例格式中顯示的所有欄位。在部分情況下，已合併資訊。如需最新資訊，請參閱文件來源。 
+
+ 全球資訊網協會 (W3C) 標準 
+附註：  
+本主題所提供的協力廠商網站資訊可協助您找到所需的技術資訊。URL 可能隨時變更，恕不另行通知。   
+
+文件： http://www.w3.org/TR/REC-html32 (英文)
+
+標題：HTML 3.2 參照規格
+
+Exchange 2007 特定：由 Exchange 2007 文字轉換元件實作。
+ 
+
+文件： http://www.w3.org/TR/REC-html40 (英文)
+
+標題：HTML 4.01 參照規格
+
+Exchange 2007 特定：由 Exchange 2007 文字轉換元件實作。
+ 
+
+文件： http://www.w3.org/TR/REC-xml/ 
+
+標題：可延伸標記語言 (XML) 1.0 (第四版)
+
+Exchange 2007 特定：由 Exchange Web 服務和 Exchange WebDAV ISAPI Extension for IIS 實作。
+ 
+
+文件： http://www.w3.org/TR/2000/NOTE-SOAP-20000508/ 
+
+標題：簡易物件存取通訊協定 (SOAP) 1.1
+
+Exchange 2007 特定：由 Exchange Web 服務局部實作。
+ 
+
+文件：Web 服務交互操作性組織 (WS-I) 標準
+
+標題： WS-I Basic Profile 1.0
+
+Exchange 2007 特定：由 Exchange 2007 Web 服務實作。
+ 
+
+RFC：1035 http://rfc.net/rfc1035.html (英文)
+
+標題：網域名稱 - 實作和規格
+
+更新者： 1101, 1183, 1348, 1876, 1982, 1995, 1996, 2065, 2136, 2137, 2181, 2308, 2535, 2845, 3425, 3658, 4033, 4034, 4035, 4343
+
+過時： 882, 883, 973
+
+Exchange 2007 特定：由 Exchange 2007 支援。
+ 
+
+RFC：1652 http://rfc.net/rfc1652.html (英文)
+
+標題：8 位元 MIME 傳輸的 SMTP 服務延伸
+
+過時： 1426
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：1731 http://rfc.net/rfc1731.html (英文)
+
+標題：IMAP4 驗證機制
+
+Exchange 2007 特定 ：由 Exchange 2007 IMAP4 服務實作。
+ 
+
+RFC：1740 http://rfc.net/rfc1740.html (英文)
+
+標題：Macintosh 檔案的 MIME 封裝 - MacMIME
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：1741 http://rfc.net/rfc1741.html (英文)
+
+標題：BinHex 編碼檔案的 MIME 內容類型
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：1823 http://rfc.net/rfc1823.html (英文)
+
+標題：LDAP 應用程式介面 
+
+Exchange 2007 特定：由 Exchange 2007 支援，以與 Active Directory 通訊。
+ 
+
+RFC：1870 http://rfc.net/rfc1870.html (英文)
+
+標題：郵件大小宣告的 SMTP 服務延伸
+
+過時： 1653
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC：1896 http://rfc.net/rfc1896.html (英文)
+
+標題：文字/豐富型 MIME 內容類型
+
+過時： 1523, 1563
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：1939 http://rfc.net/rfc1939.html (英文)
+
+標題：郵局通訊協定 - 第 3 版
+
+更新者： 1957, 2449
+
+過時： 1725
+
+Exchange 2007 特定：由 Exchange 2007 POP3 服務實作。
+ 
+
+RFC：2034 http://rfc.net/rfc2034.html (英文)
+
+標題：傳回增強型錯誤碼的 SMTP 服務延伸
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC： 2045, 2046, 2047, 2049, 4288, 4289 
+
+http://rfc.net/rfc2045.html 
+
+http://rfc.net/rfc2046.html 
+
+http://rfc.net/rfc2047.html 
+
+http://rfc.net/rfc2049.html 
+
+http://rfc.net/rfc4288.html 
+
+http://rfc.net/rfc4289.html 
+
+標題：多用途網際網路郵件延伸標準 (MIME)
+
+更新者： 2184, 2231, 2646, 3798
+
+過時： 1521, 1522, 1590, 2048
+
+Exchange 2007 特定：由 Exchange 2007 實作。
+ 
+
+RFC：2088 http://rfc.net/rfc2088.html (英文) 
+
+標題：IMAP4 非同步處理文字
+
+更新者： 4466
+
+Exchange 2007 特定：由 Exchange 2007 IMAP4 服務實作。
+ 
+
+RFC：2177 http://rfc.net/rfc2177.html (英文) 
+
+標題：IMAP4 IDLE 命令
+
+Exchange 2007 特定：由 Exchange 2007 IMAP4 服務實作。
+ 
+
+RFC：2181 http://rfc.net/rfc2181.html (英文) 
+
+標題：釐清 DNS 規格
+
+更新者： 2535, 4033, 4034, 4035, 4343
+
+更新： 1034, 1035, 1123
+
+Exchange 2007 特定：由 Exchange 2007 支援。
+ 
+
+RFC：2183 http://rfc.net/rfc2183.html (英文) 
+
+標題：在網際網路郵件中進行簡報資訊通訊：Content-Disposition 標頭欄位
+
+更新者： 2184, 2231
+
+更新： 1806
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：2231 http://rfc.net/rfc2231.html (英文) 
+
+標題：MIME 參數值和編碼文字延伸：字元集、語言和接續
+
+更新： 2045, 2047, 2183
+
+過時： 2184
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。請注意，雖然輸入轉換期間支援 RFC2231 編碼附件檔案名稱，但是 Exchange 2007 不會在 MIME 電子郵件中產生 RFC2231 編碼內容。
+ 
+
+RFC：2247 http://rfc.net/rfc2247.html (英文) 
+
+標題：在 LDAP/X.500 辨別名稱中使用網域
+
+更新者： 4519, 4524
+
+Exchange 2007 特定：由 Exchange 2007 支援。
+ 
+
+RFC：2311 http://rfc.net/rfc2311.html (英文) 
+
+標題：S/MIME 第 2 版郵件規格
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項實作。
+ 
+
+RFC：2312 http://rfc.net/rfc2312.html (英文) 
+
+標題：S/MIME 第 2 版憑證處理
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：2342 http://rfc.net/rfc2342.html (英文) 
+
+標題：IMAP4 命名空間
+
+更新者： 4466
+
+Exchange 2007 特定：由 Exchange 2007 IMAP4 服務實作。
+ 
+
+RFC：2387 http://rfc.net/rfc2387.html (英文) 
+
+標題：MIME Multipart/相關內容類型
+
+更新者： 2112
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：2426 http://rfc.net/rfc2426.html (英文) 
+
+標題：vCard MIME 目錄設定檔
+
+Exchange 2007 特定：由 Exchange 2007 CDOEX 元件實作。支援 vCard 匯入/匯出。
+ 
+
+RFC：2445 http://rfc.net/rfc2445.html (英文) 
+
+標題：網際網路行事曆和排程核心物件規格 (iCalendar) 
+
+Exchange 2007 特定：由 Exchange 2007 實作。
+ 
+
+RFC：2446 http://rfc.net/rfc2446.html (英文) 
+
+標題：iCalendar 傳輸獨立交互操作性通訊協定 (iTIP) 排程事件、忙碌時間、待辦事項和日誌項目
+
+Exchange 2007 特定：由 Exchange 2007 實作 (局部支援)。
+ 
+
+RFC：2447 http://rfc.net/rfc2447.html (英文) 
+
+標題：iCalendar 郵件型交互操作性通訊協定 (iMIP)
+
+Exchange 2007 特定：由 Exchange 2007 實作 (局部支援)。
+ 
+
+RFC：2449 http://rfc.net/rfc2449.html (英文) 
+
+標題：POP3 延伸機制
+
+更新者： 5034
+
+更新： 1939
+
+Exchange 2007 特定：由 Exchange 2007 POP3 服務實作。
+ 
+
+RFC：2557 http://rfc.net/rfc2557.html (英文) 
+
+標題：彙總文件的 MIME 封裝 (如 HTML (MHTML))
+
+過時： 2110
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：2595 http://rfc.net/rfc2595.html (英文) 
+
+標題：搭配使用 TLS 與 IMAP、POP3 和 ACAP
+
+更新者： 4616
+
+Exchange 2007 特定：由 Exchange 2007 IMAP4 和 POP3 服務實作。不支援 ACAP。
+ 
+
+RFC：2616 http://rfc.net/rfc2616.html (英文) 
+
+標題：超文字傳送通訊協定 - HTTP v1.1
+
+更新者： 2817
+
+過時： 2068
+
+Exchange 2007 特定：由 Windows Server 2003 和 2008 實作。由 Exchange 2007 自動探索服務、Exchange Web 服務和 Exchange WebDAV ISAPI Extension for IIS 支援。
+ 
+
+RFC：2617 http://rfc.net/rfc2617.html (英文) 
+
+標題：HTTP 驗證：基本和摘要存取驗證
+
+過時： 2069
+
+Exchange 2007 特定：由 Exchange 2007 自動探索服務、Exchange Web 服務和 Exchange WebDAV ISAPI Extension for IIS 支援。
+ 
+
+RFC：2631 http://rfc.net/rfc2631.html (英文) 
+
+標題：Diffie-Hellman 金鑰合約方法
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access S/MIME 控制項支援。
+ 
+
+RFC：2634 http://rfc.net/rfc2634.html (英文) 
+
+標題：S/MIME 的增強型安全性服務
+
+Exchange 2007 特定：由 Exchange 2007 局部支援。
+ 
+
+RFC：2782 http://rfc.net/rfc2782.html (英文) 
+
+標題：指定服務位置的 DNS RR (DNS SRV)
+
+過時： 2052
+
+Exchange 2007 特定：由 Exchange 2007 支援。
+ 
+
+RFC：2797 http://rfc.net/rfc2797.html (英文) 
+
+標題：透過 CMS 的憑證管理郵件
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access S/MIME 控制項實作。
+ 
+
+RFC：2821 http://rfc.net/rfc2821.html (英文) 
+
+標題：簡易郵件傳送通訊協定 (SMTP)
+
+更新： 1123
+
+過時： 821, 974, 1869
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC：2822 http://rfc.net/rfc2822.html (英文) 
+
+標題：網際網路郵件格式
+
+過時： 822
+
+Exchange 2007 特定：由 Exchange 2007 MIME 轉換共用元件實作。
+ 
+
+RFC：3030 http://rfc.net/rfc3030.html (英文) 
+
+過時： 1830
+
+標題：傳輸大型和二進位 MIME 郵件的 SMTP 服務延伸
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC：3207 http://rfc.net/rfc3207.html (英文) 
+
+標題：透過傳輸層安全性之安全 SMTP 的 SMTP 服務延伸
+
+過時： 2487
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC：3217 http://rfc.net/rfc3217.html (英文) 
+
+標題：三重 DES 和 RC2 金鑰包裝
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC：3278 http://rfc.net/rfc3278.html (英文) 
+
+標題：在密碼編譯訊息語法 (CMS) 中使用 Elliptic Curve Cryptography (ECC) 演算法
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：3370 http://rfc.net/rfc3370.html (英文) 
+
+標題：密碼編譯訊息語法 (CMS) 演算法
+
+過時： 2630, 3211
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：3394 http://rfc.net/rfc3394.html (英文) 
+
+標題：進階加密標準 (AES) 金鑰包裝演算法
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：3461 http://rfc.net/rfc3461.html (英文) 
+
+標題：傳遞狀態通知 (DSN) 的簡易郵件傳送通訊協定 (SMTP) 服務延伸
+
+過時： 1891
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+
+如需相關資訊，請參閱了解未傳遞回報。
+ 
+
+RFC：3462 http://rfc.net/rfc3462.html (英文) 
+
+標題：報告郵件系統管理郵件的 Multipart/報告內容類型過時： 1892
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務局部實作。
+ 
+
+RFC：3463 http://rfc.net/rfc3463.html (英文) 
+
+標題：增強型郵件系統狀態碼
+
+更新者： 3886, 4468, 4865, 4954
+
+過時： 1893
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+
+如需相關資訊，請參閱了解未傳遞回報。
+ 
+
+RFC：3464 http://rfc.net/rfc3464.html (英文) 
+
+標題：傳遞狀態通知的可延伸郵件格式
+
+更新者： 4865
+
+過時： 1894
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC：3501 http://rfc.net/rfc3501.html (英文) 
+
+標題：網際網路訊息存取通訊協定 - 第 4 版，修訂版 1
+
+更新者： 4466, 4469, 4551, 5032, 5182
+
+過時： 2060
+
+Exchange 2007 特定：由 Exchange 2007 實作 (不支援 AUTH=PLAIN)。
+ 
+
+RFC：3503 http://rfc.net/rfc3503.html (英文) 
+
+標題：網際網路訊息存取通訊協定 (IMAP) 的郵件配置通知 (MDN) 設定檔。
+
+Exchange 2007 特定：由 Exchange 2007 實作，且遵循伺服器實作區段。
+ 
+
+RFC：3565 http://rfc.net/rfc3565.html (英文) 
+
+標題：在密碼編譯訊息語法 (CMS) 中使用進階加密標準 (AES) 加密演算法
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：3629 http://rfc.net/rfc3629.html (英文) 
+
+標題：UTF-8，ISO 10646 的轉換格式
+
+更新： 2279
+
+Exchange 2007 特定：由 Exchange 2007 支援
+ 
+
+RFC：3834 http://rfc.net/rfc3834.html (英文) 
+
+標題：自動回應電子郵件的建議 
+
+Exchange 2007 特定：由 Exchange 2007 Mailbox Server 實作。
+ 
+
+RFC：3842 http://rfc.net/rfc3842.html (英文) 
+
+標題：工作階段初始通訊協定 (SIP) 的郵件摘要和訊息等候指示事件套件
+
+Exchange 2007 特定：由 Exchange 2007 整合通訊實作。
+ 
+
+RFC：3850 http://rfc.net/rfc3850.html (英文) 
+
+標題：安全多用途網際網路郵件延伸標準 (S/MIME) 3.1 版憑證處理
+
+過時： 2632
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：3851 http://rfc.net/rfc3851.html (英文) 
+
+標題：安全多用途網際網路郵件延伸標準 (S/MIME) 3.1 版郵件規格
+
+過時： 2633
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項實作。
+ 
+
+RFC：3852 http://rfc.net/rfc3852.html (英文) 
+
+標題：密碼編譯訊息語法 (CMS)
+
+更新者： 4853, 5083
+
+過時： 3369
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：3974 http://rfc.net/rfc3974.html (英文) 
+
+標題：混合 IPv4/v6 環境中的 SMTP 作業經驗
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務支援。
+ 
+
+RFC：4120 http://rfc.net/rfc4120.html (英文) 
+
+標題：Kerberos 網路驗證服務 (V5)
+
+更新者： 4537, 5021
+
+過時： 1510
+
+Exchange 2007 特定：由具有 MSRPC 通訊協定以及 Exchange POP3、IMAP4 和 SMTP 服務的 Exchange 2007 Mailbox Server 支援。
+ 
+
+RFC：4262 http://rfc.net/rfc4262.html (英文) 
+
+標題：安全多用途網際網路郵件延伸標準 (S/MIME) 功能的 X.509 憑證延伸
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：4346 http://rfc.net/rfc4346.html (英文) 
+
+標題：傳輸層安全性 (TLS) 通訊協定 1.1 版
+
+更新者： 4366, 4680, 4681
+
+過時： 2246
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務、POP3 服務和 IMAP4 服務實作。
+ 
+
+RFC：4406 http://rfc.net/rfc4406.html (英文) 
+
+標題：寄件者識別碼：驗證電子郵件
+
+Exchange 2007 特定：局部實作。Exchange 2007 不支援郵件 MTA 轉寄。
+ 
+
+RFC： 4409 http://rfc.net/rfc4409.html (英文) 
+
+標題：郵件的郵件提交
+
+過時： 2476
+
+Exchange 2007 特定：局部實作。Exchange 2007 不一定會傳回 554 DSN (例如，550 5.7.1)。
+ 
+
+RFC：4559 http://rfc.net/rfc4559.html (英文) 
+
+標題：Microsoft Windows 中的 SPNEGO 型 Kerberos 和 NTLM HTTP 驗證
+
+Exchange 2007 特定：由 Exchange 2007 自動探索服務、Exchange Web 服務和 Exchange WebDAV ISAPI Extension for IIS 支援。
+ 
+
+RFC：4853 http://rfc.net/rfc4853.html (英文) 
+
+標題：密碼編譯訊息語法 (CMS) 多簽入者釐清
+
+更新： 3852
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項實作。 
+ 
+
+RFC：4918 http://rfc.net/rfc4918.html (英文) 
+
+標題：網頁分工編寫及版本管理 (WebDAV) 的 HTTP 延伸
+
+過時： 2518
+
+Exchange 2007 特定：由 Exchange 2007 WebDAV ISAPI Extension for IIS 實作
+ 
+
+RFC：4954 http://rfc.net/rfc4954.html (英文) 
+
+標題：驗證的 SMTP 服務延伸
+
+更新： 3463
+
+過時： 2554
+
+Exchange 2007 特定：由 Exchange 2007 Transport 服務實作。
+ 
+
+RFC：5008 http://rfc.net/rfc5008.html (英文) 
+
+標題： 安全多用途網際網路郵件延伸標準 (S/MIME) 中的套件 B
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 
+
+RFC：1734 http://rfc.net/rfc1734.html (英文) 
+
+標題：POP3 SASL 驗證機制
+
+Exchange 2007 特定：由 Exchange 2007 POP3 服務 (Windows 整合式驗證 - NTLM 和 GSSAPI) 實作。
+ 
+
+RFC：5035 http://rfc.net/rfc5035.html (英文) 
+
+標題：增強型安全性服務 (ESS) 更新：新增 CertID 演算法調配
+
+更新： 2634
+
+Exchange 2007 特定：由 Exchange 2007 Outlook Web Access 和 S/MIME 控制項支援。
+ 

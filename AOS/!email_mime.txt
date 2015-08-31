@@ -1,0 +1,3 @@
+
+可以參考 GNU GMIME 的 implementation API
+http://library.gnome.org/devel/gmime/stable/

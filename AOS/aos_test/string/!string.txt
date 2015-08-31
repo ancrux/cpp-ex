@@ -1,0 +1,4 @@
+
+get string test data from /AOS_data/string:
+3200.txt
+crc.hpp.txt

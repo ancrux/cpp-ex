@@ -1,0 +1,25 @@
+
+Maildir Specification:
+http://cr.yp.to/proto/maildir.html
+http://www.qmail.org/man/man5/maildir.html
+http://wiki.dovecot.org/MailboxFormat/Maildir
+
+Maildir++
+http://www.inter7.com/courierimap/README.maildirquota.html
+
+
+- 跟 Maildir 是 interchangeable
+- 比 Maildir 多 quota, folder 的功能
+- folder 是在主目錄下以 '.' 開頭命名的子目錄，不可以有兩個 . like ".."
+e.g folder "Important" => ".Important"
+
+- folder 底下有一個空檔叫 maildirfolder 代表這是一個 maildir++ folder
+
+- 主目錄下保留一個預設子目錄叫 ".Trash"
+
+- folder 不能再有 sub-folder 如果想支援 recursive folder 請自行定義
+hierarchy delimiter (e.g. ':') 用 ".folder:subfolder" 的方式模擬
+
+- 檔案 maildirsize 用來限制 quota
+第一行用 comma 分開 10000000S,1000C 代表 10000000 bytes 或 1000 封信
+接下來每一行都是用 single space 分開，第一個數值是信件的 bytes 第二個數值是信件的 count

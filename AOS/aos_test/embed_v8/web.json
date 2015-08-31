@@ -1,0 +1,12 @@
+{
+	"UI":{
+		"timeout":300 // timeout for 300 seconds
+	},
+	"server":{
+		"type":/* server type */"pop3",
+		"host":"pop.gmail.com",
+		"port":995,
+		"ssl":true,
+		"timeout":5
+	}
+}

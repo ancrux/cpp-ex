@@ -1,0 +1,53 @@
+
+Local Mail Transfer Protocol
+http://tools.ietf.org/html/rfc2033
+http://www.faqs.org/rfcs/rfc2033.html
+
+一個 SMTP/ESMTP 的 derivation (衍生版)
+- LMTP 被認為是跟 SMTP 不同的 protocol (雖然它是 SMTP/ESMTP 的衍生版)
+	所以不建議開在 TCP port 25
+- LMTP 的實作上，必需要支援 ESMTP 中的 PIPELINING, ENHANCEDSTATUSCODES, 以及應該支援 8BITMIME
+- LMTP 不應該使用在 WAN (廣域網路)
+
+
+主要是要解決 SMTP/ESMTP 下列的問題:
+- SMTP agent 需要一個 mail queue 來存放無法順利發送的郵件，比較浪費系統資源
+- 在 DATA 指令完成後，無法針對每一個 recipient 傳送的結果做回應，只能給一個全體的回應碼。
+
+Command:
+
+LHLO:
+用 LHLO 取代 HELO/EHLO
+
+DATA:
+- DATA 之前的 RCPT 指令如果沒有一個成功，DATA 送完後一定要回 503 fail code
+- 對於 DATA 之前成功的每一個 RCPT 指令，都要有一個回應碼，而且要照 RCPT 發送的順序。
+
+EXAMPLE:
+
+S: 220 foo.edu LMTP server ready
+C: LHLO foo.edu
+S: 250-foo.edu
+S: 250-PIPELINING
+S: 250 SIZE
+C: MAIL FROM:<chris@bar.com>
+S: 250 OK
+C: RCPT TO:<pat@foo.edu> // 第一個 RCPT: OK
+S: 250 OK
+C: RCPT TO:<jones@foo.edu> // 第二個 RCPT: FAILED <== 稍後不用回應
+S: 550 No such user here
+C: RCPT TO:<green@foo.edu> // 第三個 RCPT: OK
+S: 250 OK
+C: DATA
+S: 354 Start mail input; end with <CRLF>.<CRLF>
+C: Blah blah blah...
+C: ...etc. etc. etc.
+C: .
+S: 250 OK // 回應第一個 RCPT
+S: 452 <green@foo.edu> is temporarily over quota // 回應第三個 RCPT
+C: QUIT
+S: 221 foo.edu closing connection
+
+
+BDAT LAST:
+- 如果支援 BINARYMIME (ESMTP CHUNKING)

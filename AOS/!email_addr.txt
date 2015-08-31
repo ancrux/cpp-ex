@@ -1,0 +1,78 @@
+
+http://en.wikipedia.org/wiki/E-mail_address#RFC_specification
+
+Overview
+Most e-mail on the Internet uses the Simple Mail Transfer Protocol (SMTP), which is defined in the Internet standards RFC 5321 and RFC 5322.
+
+E-mail addresses, such as jsmith@example.com, have two parts. The part before the @ sign is the local-part of the address, often the username of the recipient (jsmith), and the part after the @ sign is the domain which is a hostname to which the e-mail message will be sent (example.com). Roughly speaking, the hostname is looked up in the Domain Name System to find the mail transfer agent or Mail eXchangers (MXs) accepting e-mail for that address.
+
+The domain may have semantic meaning for any mail-system handling the address; the meaning is well defined, and any changes in meaning involve changing every mail server in existence. The local-part, by contrast, is supposed to be opaque to every mail system except the system which is authoritative for the domain. This is what makes e-mail a federated system.
+
+When a host receives an e-mail, it will be delivered to an e-mail mailbox. Some hosts allow more than one e-mail address to be sent to the same mailbox via an e-mail alias or even allow a catch-all address where the local-part can be undefined and e-mail would be delivered to a configured and existing e-mail address.
+
+Often, the domain of an e-mail address is that of an e-mail service, such as Google's Gmail, Microsoft's Hotmail, etc. The domain can also be the domain name of the organization that the recipient represents, or of the recipient's personal site.
+
+Addresses found in the header fields of e-mail should not be considered authoritative, because SMTP has no generally-required mechanisms for authentication. Forged e-mail addresses are often seen in spam, phishing, and many other Internet-based scams; this has led to several initiatives which aim to make such forgeries easier to spot.
+
+Further information: E-mail authentication, Anti-spam techniques (e-mail)
+To indicate whom the message is intended for, a user can use the "display name" of the recipient followed by the address specification surrounded by angled brackets, for example: John Smith <john.smith@example.com>.
+
+Earlier forms of e-mail addresses included the somewhat verbose notation required by X.400, and the UUCP "bang path" notation, in which the address was given in the form of a sequence of computers through which the message should be relayed. This was widely used for several years, but was superseded by the generally more convenient SMTP form.
+
+[edit] RFC specification
+E-mail addresses are formally defined in RFC 5322 (mostly section 3.4.1) and to a lesser degree RFC 5321. An e-mail address is a string of a subset of ASCII characters (see however the internationalize addresses below) separated into 2 parts by an "@" (at sign), a "local-part" and a domain, that is, local-part@domain.
+
+The local-part of an e-mail address may be up to 64 characters long and the domain name may have a maximum of 255 characters. However, the maximum length of a forward or reverse path length of 256 characters restricts the entire e-mail address to be no more than 254 characters.[1] Some mail protocols, such as X.400, may require larger objects, however. The SMTP specification recommends that software implementations impose no limits for the lengths of such objects.
+
+The local-part of the e-mail address may use any of these ASCII characters:
+
+Uppercase and lowercase English letters (a-z, A-Z)
+Digits 0 to 9
+Characters ! # $ % & ' * + - / = ? ^ _ ` { | } ~
+Character . (dot, period, full stop) provided that it is not the first or last character, and provided also that it does not appear two or more times consecutively.
+Additionally, quoted-strings (ie: "John Doe"@example.com) are permitted, thus allowing characters that would otherwise be prohibited, however they do not appear in common practice. RFC 5321 also warns that "a host that expects to receive mail SHOULD avoid defining mailboxes where the Local-part requires (or uses) the Quoted-string form".
+
+The local-part is case sensitive, so "jsmith@example.com" and "JSmith@example.com" may be delivered to different people. This practice is discouraged by RFC 5321. However, only the authoritative mail servers for a domain may make that decision. The only exception is for a local-part value of "postmaster" which is case insensitive, and should be forwarded to the server's administrator.
+
+Notwithstanding the addresses permitted by these standards, some systems impose more restrictions on e-mail addresses, both in e-mail addresses created on the system and in e-mail addresses to which messages can be sent. Hotmail, for example, only allows creation of e-mail addresses using alphanumerics, dot (.), underscore (_) and hyphen (-), and will not allow sending mail to any e-mail address containing ! # $ % * / ? ^ ` { | } ~[2]. The domain name is much more restricted: it must match the requirements for a hostname, consisting of letters, digits, hyphens and dots. In addition, the domain may be an IP address literal, surrounded by square braces, such as jsmith@[192.168.2.1] (this is rarely seen, except in spam).
+
+The informational RFC 3696 written by the author of RFC 5321 explains the details in a readable way, with a few minor errors noted in the 3696 errata.
+
+[edit] RFC invalid e-mail addresses
+Abc.example.com (character @ is missing)
+Abc.@example.com (character dot(.) is last in local part)
+Abc..123@example.com (character dot(.) is double)
+A@b@c@example.com (only one @ is allowed outside quotations marks)
+()[]\;:,<>@example.com (none of the characters before the @ in this example are allowed outside quotation marks)
+[edit] Common local-part semantics
+According to RFC 5321 2.3.11 Mailbox and Address, "...the local-part MUST be interpreted and assigned semantics only by the host specified in the domain part of the address.". This means that no assumptions can be made about the meaning of the local-part of another mail server. It is entirely up to the configuration of the mail server.
+
+[edit] Local-part normalization
+Interpretation of the local-part of an email address is dependent on the conventions and policies implemented in the mail server. For example, case-sensitivity may distinguish mailboxes differing only in capitalization of characters of the local-part, although this not very common.[citation needed] GMail (Google Mail) ignores all dots in the local-part for the purposes of determining account identity.[3] This prevents the creation of user accounts your.user.name or yourusername when the account your.username already exists.
+
+[edit] Sub-addressing
+Some mail services allow a user to append a +tag qualifier to their e-mail address (e.g., joeuser+tag@example.com). The text of tag can be used to apply filtering. The text of the tag can also be used to help a user figure out which organization "leaked" the user's email address to a spammer. [4] [5] [6] However, some mail servers violate RFC 5322, and the recommendations in RFC 3696, by refusing to send mail addressed to a user on another system merely because the local-part of the address contains the plus sign (+). Users of these systems cannot use plus addressing. On the other hand, most installations of the qmail and Courier Mail Server products support the use of a hyphen '-' as a separator within the local-part, such as joeuser-tag@example.com or joeuser-tag-sub-anything-else@example.com. This allows qmail through .qmail-default or .qmail-tag-sub-anything-else files to sort, filter, forward, or run an application based on the tagging system established. Disposable e-mail addresses of this form, using various separators between the base name and the tag are supported by several email services, including Runbox (plus and hyphen), Google Mail (plus)[7], Yahoo! Mail Plus (hyphen)[8], and FastMail (plus)[9]. The name sub-addressing is the generic term (used for plus-addressing and hyphen-addressing) found in some IETF standards-track documents, such as RFC 5233.
+
+[edit] Validation
+Not only are e-mail addresses used in a mail client or on a mail server, but also used in websites where a user-supplied e-mail address is often validated.
+
+An e-mail address is generally recognized as having two parts joined with an at-sign (@); this in itself is a basic form of validation. However, the technical specification detailed in RFC 822 and subsequent RFCs goes far beyond this, offering very complex and strict restrictions. [10]
+
+Trying to match these restrictions is a complex task, often resulting in long regular expressions.[11]
+
+This means that many mail servers adopt very relaxed validation that allows and handles e-mail addresses that are disallowed according to the RFC and instead verify the e-mail address against relevant systems such as DNS for the domain part or using callback verification to check if the mailbox exists.[12]
+
+Conversely, many websites make the mistake of checking email addresses too strictly, rejecting addresses containing perfectly valid characters like + or / signs.[citation needed]
+
+[edit] Internationalization
+The IETF conducts a technical and standards working group devoted to internationalization issues of email addresses, entitled Email Address Internationalization (EAI, also known as IMA - Internationalized Email Address) [13]. This group has published the informational RFC 4952, envisioning changes to the mail header environment to permit the full range of Unicode characters and an SMTP Extension to permit UTF-8 mail addressing. Experimental RFC 5335 describes internationalized email headers, including a UTF8-based address specification. The list of valid examples below is thus expected to undergo significant additions.
+
+The basic EAI concepts involve exchanging mail in UTF-8, with downgrading mechanisms for legacy systems. The local servers would be responsible for the "local" part of the address, whereas the domain portion would be restricted by IDN (Internationalized Domain Names), though still transmitted in UTF-8. The mail server is also responsible for any mapping mechanism between the IMA form and any ASCII alias.
+
+When EAI is standardized, users will likely have a localized address in a native language script or character set, as well as an ASCII form for communicating with legacy systems or for script-independent use. Application that recognize internationalized domain names and mail addresses must have facilities to convert these representations.
+
+[edit] Example
+Pele@live.com (simple diacritic, still mostly Latin)
+£_£j£e£d£g?@£k£\£l?£_£`£d£^£g£\.£_£j£e£d£g?
+¥Ò´´@?¤t.¤é¥»
+The mail address AdamDoe@example.com is not an International email alias because it consists entirely of ASCII characters and does not need the EAI UTF8SMTP method or other protocols to be interpreted.
